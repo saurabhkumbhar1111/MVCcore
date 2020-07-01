@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using MvcCore.dal;
 using MvcCore.Models;
@@ -11,6 +12,7 @@ using MvcCore.Models;
 
 namespace MvcCore.Controllers
 {
+    [Authorize]    //JWT:step 3
     [Route("api/[controller]")]
     [ApiController]
     public class CustomerAPI : ControllerBase

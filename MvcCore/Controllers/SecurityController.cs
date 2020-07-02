@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
+using MvcCore.Models;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -17,8 +18,8 @@ namespace MvcCore.Controllers
     public class SecurityController : ControllerBase
     {
         // GET: api/<SecurityController>
-        [HttpGet]
-        public IEnumerable<string> Get()
+        
+        private string GenerateKey(string username)
         {
             // Security Key
             var securityKey = new SymmetricSecurityKey
@@ -28,7 +29,7 @@ namespace MvcCore.Controllers
                     SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
             // Claims
             var claims = new[] {
-                new Claim(JwtRegisteredClaimNames.Sub, "Saurabh"),
+                new Claim(JwtRegisteredClaimNames.Sub, username),
                 new Claim(JwtRegisteredClaimNames.Email, "sample@gmail.com"),
                 new Claim("Admin", "true"),
                 new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
@@ -41,7 +42,7 @@ namespace MvcCore.Controllers
               signingCredentials: credentials);
 
             string tokenstring = new JwtSecurityTokenHandler().WriteToken(token);
-            return new string[] { tokenstring };
+            return tokenstring;
         }
 
         // GET api/<SecurityController>/5
@@ -53,8 +54,18 @@ namespace MvcCore.Controllers
 
         // POST api/<SecurityController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public IActionResult Post([FromBody] User obj)
         {
+            if((obj.username=="Saurabh") && (obj.password == "pass123"))
+            {
+                obj.token = GenerateKey(obj.username);
+                obj.password = "";
+                return Ok(obj);
+            }
+            else
+            {
+                return StatusCode(401, "Not a valid user");
+            }
         }
 
         // PUT api/<SecurityController>/5

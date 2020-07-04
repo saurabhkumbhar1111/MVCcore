@@ -8,6 +8,7 @@ namespace MvcCore.Models
 {
     public class CustomerModel
     {
+        public int id { get; set; }
         //Data Annotations -- Validation
         [Required]
         //[RegularExpression ("^[a-z],{1,10}$")]

@@ -17,7 +17,7 @@ namespace MvcCore.dal
         {
             modelBuilder.Entity<CustomerModel>().ToTable("tblCustomer");  //Mapping code
 
-            modelBuilder.Entity<CustomerModel>().HasKey(p => p.name);  //primary key
+            modelBuilder.Entity<CustomerModel>().HasKey(p => p.id);  //primary key
         }
 
         public DbSet<CustomerModel> CustomerModels { get; set; }

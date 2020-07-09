@@ -15,9 +15,23 @@ namespace MvcCore.dal
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<CustomerModel>().ToTable("tblCustomer");  //Mapping code
+            //primary key
+            modelBuilder.Entity<CustomerModel>().HasKey(p => p.id);
 
-            modelBuilder.Entity<CustomerModel>().HasKey(p => p.id);  //primary key
+            modelBuilder.Entity<Address>().HasKey(p => p.id);
+
+            //identity specification -->
+            //modelBuilder.Entity<CustomerModel>().Property(t => t.id).ValueGeneratedNever();
+
+            //Mapping code
+            modelBuilder.Entity<CustomerModel>().ToTable("tblCustomer");
+
+            modelBuilder.Entity<Address>().ToTable("tblAddress");
+
+            //one to many relationship
+            modelBuilder.Entity<CustomerModel>()
+            .HasMany(a => a.addresses)
+            .WithOne(c => c.customer);
         }
 
         public DbSet<CustomerModel> CustomerModels { get; set; }

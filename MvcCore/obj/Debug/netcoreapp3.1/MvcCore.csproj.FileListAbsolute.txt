@@ -119,5 +119,6 @@ D:\Training Project april2020\MvcCoreProj\MvcCore\bin\Debug\netcoreapp3.1\Micros
 D:\Training Project april2020\MvcCoreProj\MvcCore\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
 D:\Training Project april2020\MvcCoreProj\MvcCore\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Tokens.dll
 D:\Training Project april2020\MvcCoreProj\MvcCore\bin\Debug\netcoreapp3.1\System.IdentityModel.Tokens.Jwt.dll
+D:\Training Project april2020\MvcCoreProj\MvcCore\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.Design.dll
 D:\Training Project april2020\MvcCoreProj\MvcCore\obj\Debug\netcoreapp3.1\MvcCore.csproj.CoreCompileInputs.cache
 D:\Training Project april2020\MvcCoreProj\MvcCore\obj\Debug\netcoreapp3.1\MvcCore.MvcApplicationPartsAssemblyInfo.cache

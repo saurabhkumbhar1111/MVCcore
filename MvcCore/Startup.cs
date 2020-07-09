@@ -18,6 +18,7 @@ namespace MvcCore
 {
     public class Startup
     {
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -62,6 +63,11 @@ namespace MvcCore
             services.AddControllers().AddNewtonsoftJson(options => {
                 options.SerializerSettings.ContractResolver = new DefaultContractResolver();
             });
+
+            //services.AddControllers().AddNewtonsoftJson(config => {
+            //    config.Formatters.JsonFormatter.SerializerSettings.ReferenceLoopHandling
+            //    = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
+            //});
 
             services.AddControllersWithViews();
 

@@ -56,7 +56,7 @@ namespace MvcCore.Controllers
         [HttpPost]
         public IActionResult Post([FromBody] User obj)
         {
-            if((obj.username=="Saurabh") && (obj.password == "pass123"))
+            if((obj.username=="saurabh") && (obj.password == "pass123"))
             {
                 obj.token = GenerateKey(obj.username);
                 obj.password = "";

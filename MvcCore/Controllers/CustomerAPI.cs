@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 using MvcCore.dal;
 using MvcCore.Models;
 
@@ -17,7 +18,7 @@ namespace MvcCore.Controllers
     [ApiController]
     public class CustomerAPI : ControllerBase
     {
-
+       
         // GET: api/<CustomerAPI>
         [HttpGet]
         public IActionResult Get(string customerName)

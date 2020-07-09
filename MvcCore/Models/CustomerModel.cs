@@ -13,9 +13,16 @@ namespace MvcCore.Models
         [Required]
         //[RegularExpression ("^[a-z],{1,10}$")]
         public string name { get; set; }
+        // one to many relationship
+        public List<Address> addresses { get; set; }
 
+    }
+    public class Address
+    {
+        public int id { get; set; }
         [Required]
         public string address { get; set; }
 
+        public CustomerModel customer { get; set; }
     }
 }

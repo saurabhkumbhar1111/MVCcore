@@ -64,10 +64,6 @@ namespace MvcCore
                 options.SerializerSettings.ContractResolver = new DefaultContractResolver();
             });
 
-            //services.AddControllers().AddNewtonsoftJson(config => {
-            //    config.Formatters.JsonFormatter.SerializerSettings.ReferenceLoopHandling
-            //    = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
-            //});
 
             services.AddControllersWithViews();
 
@@ -78,6 +74,10 @@ namespace MvcCore
                        .AllowAnyMethod()
                        .AllowAnyHeader();
             }));
+
+            //self ref loop error fix
+            services.AddControllersWithViews().AddNewtonsoftJson(options =>
+                options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore );
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

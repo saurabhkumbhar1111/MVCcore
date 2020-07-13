@@ -35,5 +35,7 @@ namespace MvcCore.dal
         }
 
         public DbSet<CustomerModel> CustomerModels { get; set; }
+        
+
     }
 }

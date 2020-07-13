@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using MvcCore.dal;
 using MvcCore.Models;
@@ -18,7 +19,7 @@ namespace MvcCore.Controllers
     [ApiController]
     public class CustomerAPI : ControllerBase
     {
-       
+
         // GET: api/<CustomerAPI>
         [HttpGet]
         public IActionResult Get(string customerName)
@@ -27,7 +28,8 @@ namespace MvcCore.Controllers
             //LINQ code
             List<CustomerModel> search = (from temp in dal.CustomerModels
                                           where temp.name == customerName
-                                          select temp).ToList<CustomerModel>();
+                                          select temp).Include(cust => cust.addresses)
+                                          .ToList<CustomerModel>();
             return Ok(search);
         }
 
@@ -53,9 +55,11 @@ namespace MvcCore.Controllers
                 CustomerDal dal = new CustomerDal();
                 dal.Database.EnsureCreated();  // creates tblCustomer if not created
                 dal.Add(obj);  // add in memory
-                dal.SaveChanges(); // entry in database
+                dal.SaveChanges(); // entry in database // insertinto....
 
-                List<CustomerModel> recs = dal.CustomerModels.ToList<CustomerModel>();
+                List<CustomerModel> recs = dal.CustomerModels.
+                                    Include(cust => cust.addresses)
+                                    .ToList<CustomerModel>(); // select inner join
 
                 return StatusCode(200, recs); // 200 (Success)
             }

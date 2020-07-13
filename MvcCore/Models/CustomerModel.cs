@@ -22,7 +22,8 @@ namespace MvcCore.Models
         public int id { get; set; }
         [Required]
         public string address { get; set; }
-
+       
         public CustomerModel customer { get; set; }
     }
+
 }
